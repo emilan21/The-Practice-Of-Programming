@@ -23,7 +23,9 @@ void quicksort(int v[], int n)
 	swap(v, 0, rand() % n);		/* move pivot elem to v[0] */
 	last = 0;
 	for (i = 1; i < n; i++)		/* partition */
-		swap(v, ++last, i);
+		if (v[i] < v[0]) {
+			swap(v, ++last, i);
+		}
 	swap(v, 0, last);		/* restore pivot */
 	quicksort(v, last);		/* recursively sort */
 	quicksort(v + last + 1, n - last - 1);	/* each part */
