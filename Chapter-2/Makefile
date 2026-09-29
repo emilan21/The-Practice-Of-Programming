@@ -1,16 +1,24 @@
-CC = gcc
-CFLAGS = -Wall -g
-LDFLAGS =
-OBJFILES = qsort.o quicksort.o
-TARGET = qsort
+CC ?= cc
+CFLAGS ?= -std=c11 -Wall -Wextra -Werror -O2
+JAVAC ?= javac
+JAVA ?= java
 
-$(TARGET): $(OBJFILES)
-	$(CC) $(CFLAGS) -o qsort $(OBJFILES)
+BUILD_DIR := build
+C_DEMOS := binary_search bsearch icmp linear_search quicksort scmp
+C_TARGETS := $(addprefix $(BUILD_DIR)/,$(C_DEMOS))
 
-qsort.o: qsort.c quicksort.h
-	$(CC) $(CFLAGS) -c qsort.c
-quicksort.o: quicksort.c quicksort.h
-	$(CC) $(CFLAGS) -c quicksort.c
+.PHONY: all check
 
-clean:
-	rm -f $(OBJFILES) $(TARGET) *~ 
+all: $(C_TARGETS) $(BUILD_DIR)/java_sort.class
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/%: %.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(BUILD_DIR)/java_sort.class: java_sort.java | $(BUILD_DIR)
+	$(JAVAC) -d $(BUILD_DIR) $<
+
+check: all
+	python3 check.py $(BUILD_DIR)

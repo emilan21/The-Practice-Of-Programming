@@ -65,14 +65,14 @@ class Quicksort
 	// Quicksort.rand: return random integer in [left,right]
 	static int rand(int left, int right)
 	{
-		return left + Math.abs(rgen.nextInt())%(right-left-1);
+		return left + rgen.nextInt(right - left + 1);
 	}
 }
 
 public class java_sort {
 
 	public static void main(String []args) {
-		String[] sarr = new String[]{"Dog, Cat, Turkey, Hippo"};
+		String[] sarr = new String[]{"Dog", "Cat", "Turkey", "Hippo"};
 
 		System.out.println(Arrays.toString(sarr));
 

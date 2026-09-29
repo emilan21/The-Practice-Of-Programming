@@ -36,7 +36,7 @@ int main()
 {
 	int v[] = {5, 3, 18, 5, 1, 29, 45, 32, 7};
 	quicksort(v, NELEMS(v));
-	for (int i = 0; i < NELEMS(v); i++) {
+	for (size_t i = 0; i < NELEMS(v); i++) {
 		printf("%d\n", v[i]);	
 	}
 	return 0;

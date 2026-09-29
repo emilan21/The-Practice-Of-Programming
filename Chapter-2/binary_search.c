@@ -34,10 +34,10 @@ int main()
 	
 	char *name = "Acirc";
 	Nameval htmlchars[] = {
-		"AElig", 0x00c6,
-		"Aacute", 0x00c1,
-		"Acirc", 0x00c2,
-		"zeta", 0x03b6,
+		{"AElig", 0x00c6},
+		{"Aacute", 0x00c1},
+		{"Acirc", 0x00c2},
+		{"zeta", 0x03b6},
 	};
 
 	printf("Index: %d\n", lookup(name, htmlchars, NELEMS(htmlchars)));
