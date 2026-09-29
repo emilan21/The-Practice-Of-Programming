@@ -1,16 +1,7 @@
-CC = gcc
-CFLAGS = -Wall -g
-LDFLAGS =
-OBJFILES = qsort.o quicksort.o
-TARGET = qsort
+.PHONY: all check
 
-$(TARGET): $(OBJFILES)
-	$(CC) $(CFLAGS) -o qsort $(OBJFILES)
+all:
+	$(MAKE) -C Chapter-2 all
 
-qsort.o: qsort.c quicksort.h
-	$(CC) $(CFLAGS) -c qsort.c
-quicksort.o: quicksort.c quicksort.h
-	$(CC) $(CFLAGS) -c quicksort.c
-
-clean:
-	rm -f $(OBJFILES) $(TARGET) *~ 
+check:
+	$(MAKE) -C Chapter-2 check
